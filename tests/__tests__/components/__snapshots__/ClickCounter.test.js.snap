@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ClickCounter matches snapshot 1`] = `
+<div>
+  <button>
+    Click me
+  </button>
+  <span>
+    You clicked 
+    0
+     times
+  </span>
+</div>
+`;
