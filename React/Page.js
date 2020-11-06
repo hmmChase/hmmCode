@@ -33,7 +33,7 @@ const Page = ({ children }) => {
 };
 
 Page.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element.isRequired).isRequired,
+  children: PropTypes.arrayOf(PropTypes.element.isRequired).isRequired
 };
 
 export default React.memo(Page);
