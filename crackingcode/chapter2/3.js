@@ -20,7 +20,7 @@ class LinkedList {
     // set the nodes data to node.next.data
     node.data = next.data;
 
-    // node -> node.next
+    // point node to next next node
     node.next = next.next;
   }
 

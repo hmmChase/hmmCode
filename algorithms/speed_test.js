@@ -44,7 +44,7 @@ function speedTestMultipleArrays(fn, numberOfArrays, arrayLength) {
 }
 
 function speedTestFunctions(functionArray) {
-  return functionArray.map((fn) => {
+  return functionArray.map(fn => {
     let numberOfArrays = 5000;
     let arrayLength = 10;
     let speed10 = speedTestMultipleArrays(fn, numberOfArrays, 10);
@@ -55,7 +55,7 @@ function speedTestFunctions(functionArray) {
       fnName: fn.name,
       speed10InMS: speed10,
       speed100InMS: speed100,
-      speed1000InMS: speed1000,
+      speed1000InMS: speed1000
     };
   });
 }
@@ -86,7 +86,7 @@ const functionList = [
       }
     }
     return false;
-  },
+  }
 ];
 
 speedTestFunctions(functionList);

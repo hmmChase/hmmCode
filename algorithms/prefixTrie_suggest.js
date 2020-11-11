@@ -27,7 +27,7 @@ function suggest(prefix) {
     const childNodes = Object.keys(node.children);
     // console.log('childNodes: ', childNodes);
 
-    childNodes.forEach((child) => {
+    childNodes.forEach(child => {
       const prefixChild = prefix + child;
 
       // console.log('node.children[child]: ', node.children[child]);

@@ -6,7 +6,7 @@ function bubbleSort(arrayToSort) {
       if (arrayToSort[j - 1] > arrayToSort[j]) {
         [arrayToSort[j - 1], arrayToSort[j]] = [
           arrayToSort[j],
-          arrayToSort[j - 1],
+          arrayToSort[j - 1]
         ];
       }
     }
