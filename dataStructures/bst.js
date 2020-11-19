@@ -53,3 +53,42 @@ class BST {
     return searchTree(node);
   }
 }
+
+
+// class Node {
+
+//   constructor(data) {
+//     this.data = data
+//     this.left = undefined
+//     this.right = undefined
+//   }
+
+//   addNode(data) {
+//     if(data > this.data) {
+//       if(!this.right) {
+//         this.right = new Node(data)
+//       } else {
+//         this.right.addNode(data)
+//       }
+//     } else {
+//       if(!this.left) {
+//         this.left = new Node(data)
+//       } else {
+//         this.left.addNode(data)
+//       }
+//     }
+//   }
+// }
+
+// function visit(node) {
+//   console.log(node.data)
+// }
+
+// function traversal(node) {
+//   if(node) {
+//     traversal(node.left)
+//     traversal(node.right)
+//     visit(node)
+//   }
+// }
+
