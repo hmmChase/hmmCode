@@ -12,83 +12,48 @@ class BST {
   }
 
   add(data) {
-    const node = this.root;
-
-    // If no root node, create one
-    if (node === null) {
+    if (!this.root) {
       this.root = new Node(data);
 
       return;
     }
 
-    const searchTree = node => {
-      if (data < node.data) {
-        // If left side doesn't exist, create it
-        if (node.left === null) {
+    let node = this.root;
+
+    while (node) {
+      if (data <= node.data) {
+        if (!node.left) {
           node.left = new Node(data);
 
           return;
-
-          // if it does exist
-          // recursively go down the branch
-          // until one doesn't exist
-        } else if (node.left !== null) {
-          return searchTree(node.left);
-        }
-
-        // same for other side
+        } else node = node.left;
       } else if (data > node.data) {
-        if (data > node.data) {
-          if (node.right === null) {
-            node.right = new Node(data);
+        if (!node.right) {
+          node.right = new Node(data);
 
-            return;
-          } else if (node.right !== null) {
-            return searchTree(node.right);
-          }
-        } else return null;
+          return;
+        } else node = node.right;
       }
-    };
+    }
+  }
 
-    return searchTree(node);
+  traverse(node = this.root) {
+    if (node) {
+      this.traverse(node.left);
+      console.log(node.data);
+      this.traverse(node.right);
+    }
   }
 }
 
+const bst = new BST();
 
-// class Node {
+bst.add(10);
+bst.add(8);
+bst.add(8);
+bst.add(11);
+bst.add(9);
 
-//   constructor(data) {
-//     this.data = data
-//     this.left = undefined
-//     this.right = undefined
-//   }
+// console.log('bst:', bst);
 
-//   addNode(data) {
-//     if(data > this.data) {
-//       if(!this.right) {
-//         this.right = new Node(data)
-//       } else {
-//         this.right.addNode(data)
-//       }
-//     } else {
-//       if(!this.left) {
-//         this.left = new Node(data)
-//       } else {
-//         this.left.addNode(data)
-//       }
-//     }
-//   }
-// }
-
-// function visit(node) {
-//   console.log(node.data)
-// }
-
-// function traversal(node) {
-//   if(node) {
-//     traversal(node.left)
-//     traversal(node.right)
-//     visit(node)
-//   }
-// }
-
+bst.traverse();

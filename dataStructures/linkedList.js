@@ -6,115 +6,170 @@ class Node {
 }
 
 class LinkedList {
-  constructor(head) {
-    this.head = head;
+  constructor() {
     this.size = 0;
+    this.head = null;
   }
 
   // Insert at beginning
+  // 1. instantiate a new node
+  //   - pass in the first node (head), so it can be set as the next pointer
+  // 2. make the new node the head
+  // 3. increase the size count
+
   unshift(data) {
+    // 1, 2
     this.head = new Node(data, this.head);
 
+    // 3
     this.size++;
   }
 
   // Insert at end
+  // 1. instantiate a new node
+  //   - doesn't have a next
+  // 2. if list is empty, set new node as head
+  // 3. get beginning of list by declaring current node and set as head
+  //   - used to iterate through nodes
+  // 4. loop through nodes, until you get to the one without a next
+  // 5. set the next pointer to the new node
+  // 6. increase the size count
+
   push(data) {
+    // 1
     let node = new Node(data);
 
-    let current;
+    // 2
+    if (!this.head) this.head = node;
+    else {
+      // 3
+      let currentNode = this.head;
 
-    // if empty, make head
-    if (!this.head) {
-      this.head = node;
-    } else {
-      current = this.head;
+      // 4
+      while (currentNode.next) currentNode = currentNode.next;
 
-      // loop through list
-      while (current.next) {
-        current = current.next;
-      }
-
-      current.next = node;
+      // 5
+      currentNode.next = node;
     }
 
+    // 6
     this.size++;
   }
 
   // Insert at index
-  insertAt(data, index) {
-    // If index is out of range
-    if (index > 0 && index > this.size) return;
+  // 1. check if the index exists
+  // 2. if index is 0, insert at beginning
+  // 3. instantiate a new node
+  // 4. declare previous node place holder
+  // 5. declare index position tracker
+  // 6. declare current node and set to head
+  // 7. loop through nodes, while the current index < target index
+  // 8. set the previous node to the current node
+  //   -  so previous node becomes current index position node
+  // 9. set the current node to the next index position node
+  // 10. increment the index position
+  // 11. once at target index, point previous node to new node
+  // 12. point new node to the current node
+  // 13. increase the size count
 
-    // If first index
-    if (index === 0) {
-      this.unshift(data, this.head);
+  insertAt(data, indexTarget) {
+    // 1
+    if (indexTarget > 0 && indexTarget > this.size - 1)
+      return console.log('out of range');
 
-      return;
-    }
+    // 2
+    if (indexTarget === 0) this.unshift(data, this.head);
+    else {
+      // 3
+      const node = new Node(data);
 
-    // create node
-    const node = new Node(data);
+      // 4
+      let previousNode;
 
-    let current, previous;
+      // 5
+      let indexPos = 0;
 
-    // set current to first
-    current = this.head;
-    let indexPos = 0;
+      // 6
+      let currentNode = this.head;
 
-    while (indexPos < index) {
-      previous = current; // node before index
+      // 7
+      while (indexPos < indexTarget) {
+        // 8
+        previousNode = currentNode;
 
-      indexPos++;
+        // 9
+        currentNode = currentNode.next;
 
-      current = current.next; // node after index
-    }
-
-    // Point previous node to new node
-    previous.next = node;
-
-    // Point new node to current node
-    node.next = current;
-  }
-
-  // Get at index
-  getAt(index) {
-    let current = this.head;
-    let indexPos = 0;
-
-    while (current) {
-      if (indexPos === index) console.log(`index ${index}: `, current.data);
-
-      indexPos++;
-
-      current = current.next;
-    }
-
-    return null;
-  }
-
-  removeAt(index) {
-    let current = this.head;
-    let previous;
-    let indexPos = 0;
-
-    // If index is out of range
-    if (index > 0 && index > this.size) return;
-
-    // If index is first
-    if (index === 0) {
-      // Remove first index
-      this.head = current.next;
-    } else {
-      while (indexPos < index) {
+        // 10
         indexPos++;
-
-        previous = current;
-
-        current = current.next;
       }
 
-      previous.next = current.next;
+      // 11
+      previousNode.next = node;
+
+      // 12
+      node.next = currentNode;
+
+      // 13
+      this.size++;
+    }
+  }
+
+  // Read at specified index
+  // 1. check if the index exists
+  // 2. declare index position tracker
+  // 3. declare current node and set to head
+  // 4. loop through nodes, while the current index < target index
+  // 5. set the current node to the next index position node
+  // 6. increment the index position
+  // 7. log the current nodes data
+
+  readAtIndex(indexTarget) {
+    // 1
+    if (indexTarget > 0 && indexTarget > this.size - 1)
+      return console.log('out of range');
+
+    // 2
+    let indexPos = 0;
+
+    // 3
+    let currentNode = this.head;
+
+    // 4
+    while (indexPos < indexTarget) {
+      // 5
+      currentNode = currentNode.next;
+
+      // 6
+      indexPos++;
+    }
+
+    // 7
+    console.log(`index ${indexTarget}: `, currentNode.data);
+  }
+
+  removeAt(indexTarget) {
+    let previousNode;
+    let currentNode = this.head;
+    let indexPos = 0;
+
+    // If index is out of range
+    if (indexTarget > 0 && indexTarget > this.size - 1)
+      return console.log('out of range');
+
+    // If target index is first
+    // Remove first index
+    if (indexTarget === 0) this.head = currentNode.next;
+    else {
+      while (indexPos < indexTarget) {
+        previousNode = currentNode;
+
+        currentNode = currentNode.next;
+
+        indexPos++;
+      }
+
+      previousNode.next = currentNode.next;
     }
 
     this.size--;
@@ -126,17 +181,22 @@ class LinkedList {
   }
 
   print() {
-    let current = this.head;
+    let currentNode = this.head;
+    let indexPos = 0;
 
-    while (current) {
-      console.log(current.data);
+    while (currentNode) {
+      console.log('index:', indexPos, 'data:', currentNode.data);
 
-      current = current.next;
+      currentNode = currentNode.next;
+
+      indexPos++;
     }
 
-    return;
+    return 'end of list';
   }
 }
+
+module.exports = LinkedList;
 
 const ll = new LinkedList();
 
@@ -144,16 +204,15 @@ ll.unshift(100);
 ll.push(500);
 ll.unshift(200);
 ll.unshift(400);
-ll.insertAt(300, 2);
+ll.insertAt(300, 3);
 
-ll.getAt(3);
+ll.readAtIndex(3);
 
 // ll.removeAt(3);
 
 // ll.clearList();
 
 // console.log('ll:', ll);
-// console.log('head:', ll.head);
 console.log('print:', ll.print());
 
 //-----------------------------
