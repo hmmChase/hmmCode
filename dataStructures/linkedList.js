@@ -29,7 +29,8 @@ class LinkedList {
   // 1. instantiate a new node
   //   - doesn't have a next
   // 2. if list is empty, set new node as head
-  // 3. get beginning of list by declaring current node and set as head
+  // 3. declare current node placeholder and set to head
+  //   - get beginning of list
   //   - used to iterate through nodes
   // 4. loop through nodes, until you get to the one without a next
   // 5. set the next pointer to the new node
@@ -60,9 +61,9 @@ class LinkedList {
   // 1. check if the index exists
   // 2. if index is 0, insert at beginning
   // 3. instantiate a new node
-  // 4. declare previous node place holder
-  // 5. declare index position tracker
-  // 6. declare current node and set to head
+  // 4. declare index position tracker
+  // 5. declare previous node place holder
+  // 3. declare current node place holder and set to head
   // 7. loop through nodes, while the current index < target index
   // 8. set the previous node to the current node
   //   -  so previous node becomes current index position node
@@ -84,10 +85,10 @@ class LinkedList {
       const node = new Node(data);
 
       // 4
-      let previousNode;
+      let indexPos = 0;
 
       // 5
-      let indexPos = 0;
+      let previousNode;
 
       // 6
       let currentNode = this.head;
@@ -118,13 +119,13 @@ class LinkedList {
   // Read at specified index
   // 1. check if the index exists
   // 2. declare index position tracker
-  // 3. declare current node and set to head
+  // 3. declare current node placeholder and set to head
   // 4. loop through nodes, while the current index < target index
   // 5. set the current node to the next index position node
   // 6. increment the index position
   // 7. log the current nodes data
 
-  readAtIndex(indexTarget) {
+  read(indexTarget) {
     // 1
     if (indexTarget > 0 && indexTarget > this.size - 1)
       return console.log('out of range');
@@ -148,30 +149,54 @@ class LinkedList {
     console.log(`index ${indexTarget}: `, currentNode.data);
   }
 
-  removeAt(indexTarget) {
-    let previousNode;
-    let currentNode = this.head;
-    let indexPos = 0;
+  // Delete at specified index
+  // 1. check if the index exists
+  // 2. declare index position tracker
+  // 3. declare previous node place holder
+  // 4. declare current node and set to head
+  // 5. if target index is first, set head to second node in list
+  // 6. loop through nodes, while the current index < target index
+  // 7. set the previous node to the current node
+  //   -  so previous node becomes current index position node
+  // 8. set the current node to the next index position node
+  // 9. increment the index position
+  // 10. once at target index, set the previous node to the one after the current node
+  // 11. increase the size count
 
-    // If index is out of range
+  delete(indexTarget) {
+    // 1
     if (indexTarget > 0 && indexTarget > this.size - 1)
       return console.log('out of range');
 
-    // If target index is first
-    // Remove first index
+    // 2
+    let indexPos = 0;
+
+    // 3
+    let previousNode;
+
+    // 4
+    let currentNode = this.head;
+
+    // 5
     if (indexTarget === 0) this.head = currentNode.next;
     else {
+      // 6
       while (indexPos < indexTarget) {
+        // 7
         previousNode = currentNode;
 
+        // 8
         currentNode = currentNode.next;
 
+        // 9
         indexPos++;
       }
 
+      // 10
       previousNode.next = currentNode.next;
     }
 
+    // 11
     this.size--;
   }
 
@@ -206,9 +231,9 @@ ll.unshift(200);
 ll.unshift(400);
 ll.insertAt(300, 3);
 
-ll.readAtIndex(3);
+ll.delete(4);
 
-// ll.removeAt(3);
+// ll.read(0);
 
 // ll.clearList();
 
@@ -217,53 +242,33 @@ console.log('print:', ll.print());
 
 //-----------------------------
 
-// // runner technique
+// runner technique
 
-// const a2 = new Node(1);
+// get 2nd to last element
 
-// const b2 = new Node(2);
+function kthToLast(k, linkedList) {
+  // we need 2 pointers
 
-// const c2 = new Node(3);
+  let a = linkedList.head; // main pointer
 
-// const d2 = new Node(1);
+  let b = linkedList.head; // runner
 
-// const e2 = new Node(2);
+  while (a.next) {
+    // k=2
+    // if we should advance b
 
-// a2.setNext = b2;
+    k--; // k=1, k=0
 
-// b2.setNext = c2;
+    if (k <= 0) {
+      // k=1 no, k=0 yes
+      b = b.next;
+    }
 
-// c2.setNext = d2;
+    a = a.next;
+  }
 
-// d2.setNext = e2;
+  // output runner.data
+  console.log(b.data);
+}
 
-// const rl = new LinkedList(a2);
-
-// // 2nd to last; k=2
-
-// function kthToLast(k, linkedList) {
-//   // we need 2 pointers
-
-//   let a = linkedList.head; // main pointer
-
-//   let b = linkedList.head; // runner
-
-//   while (a.next) {
-//     // k=2
-//     // if we should advance b
-
-//     k--; // k=1, k=0
-
-//     if (k <= 0) {
-//       // k=1 no, k=0 yes
-//       b = b.next;
-//     }
-
-//     a = a.next;
-//   }
-
-//   // output runner.data
-//   console.log(b.data);
-// }
-
-// kthToLast(2, rl);
+kthToLast(2, rl);
