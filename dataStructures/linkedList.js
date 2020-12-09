@@ -246,7 +246,7 @@ console.log('print:', ll.print());
 
 // get 2nd to last element
 
-function kthToLast(k, linkedList) {
+const kthToLast = (k, linkedList) => {
   // we need 2 pointers
 
   let a = linkedList.head; // main pointer
@@ -269,6 +269,6 @@ function kthToLast(k, linkedList) {
 
   // output runner.data
   console.log(b.data);
-}
+};
 
-kthToLast(2, rl);
+kthToLast(2, ll);
