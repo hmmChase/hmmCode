@@ -12,12 +12,6 @@
 
 // "found the needle at position 5"
 
-const findNeedleIndexOf = haystack => {
-  const index = haystack.indexOf('needle');
-
-  return 'found the needle at position ' + index;
-};
-
 // for loop
 const findNeedleFor = haystack => {
   const length = haystack.length;
@@ -54,6 +48,13 @@ const findNeedleRecurse = (haystack, index = 0) => {
   if (index === length - 1) return 'not found';
 
   return findNeedleRecurse(haystack, index + 1);
+};
+
+// indexOf
+const findNeedleIndexOf = haystack => {
+  const index = haystack.indexOf('needle');
+
+  return 'found the needle at position ' + index;
 };
 
 var haystack_1 = [
