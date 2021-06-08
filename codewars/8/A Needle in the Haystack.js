@@ -6,8 +6,6 @@
 
 // "found the needle at position " plus the index it found the needle, so:
 
-// JavaScript & TypeScript
-
 // findNeedle(['hay', 'junk', 'hay', 'hay', 'moreJunk', 'needle', 'randomJunk'])
 
 // should return
