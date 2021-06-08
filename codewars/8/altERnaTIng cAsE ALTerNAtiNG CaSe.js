@@ -10,7 +10,7 @@
 // "String.prototype.toAlternatingCase".toAlternatingCase() === "sTRING.PROTOTYPE.TOaLTERNATINGcASE"
 // As usual, your function/method should be pure, i.e. it should not mutate the original string.
 
-String.prototype.toAlternatingCase = function() {
+String.prototype.toAlternatingCase = function () {
   let copyString = [...this];
 
   const capitals = [
@@ -41,6 +41,7 @@ String.prototype.toAlternatingCase = function() {
     'Y',
     'Z'
   ];
+
   const lowers = [
     'a',
     'b',
@@ -72,27 +73,14 @@ String.prototype.toAlternatingCase = function() {
 
   return copyString
     .map(char => {
-      if (capitals.includes(char)) {
-        return char.toLowerCase();
-      } else if (lowers.includes(char)) {
-        return char.toUpperCase();
-      } else {
-        return char;
-      }
+      if (capitals.includes(char)) return char.toLowerCase();
+      else if (lowers.includes(char)) return char.toUpperCase();
+      else return char;
     })
     .join('');
 };
 
-console.log(
-  ' ---------------------------------------------------------------------'
-);
-console.log(
-  ' HeLLo WoRLD.toAlternatingCase()',
-  'HeLLo WoRLD'.toAlternatingCase()
-);
-console.log(
-  ' ---------------------------------------------------------------------'
-);
+console.log('HeLLo WoRLD'.toAlternatingCase());
 
 // describe('String.prototype.toAlternatingCase', _ => {
 //   it('should work for fixed tests (provided in the description)', _ => {

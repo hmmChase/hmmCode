@@ -14,24 +14,63 @@
 
 // "found the needle at position 5"
 
-function findNeedle(haystack) {
+const findNeedleIndexOf = haystack => {
   const index = haystack.indexOf('needle');
 
   return 'found the needle at position ' + index;
-}
+};
+
+// for loop
+const findNeedleFor = haystack => {
+  const length = haystack.length;
+
+  for (let index = 0; index < length; index++) {
+    const element = haystack[index];
+
+    if (element === 'needle') return 'found the needle at position ' + index;
+  }
+};
+
+// while loop
+const findNeedleWhile = haystack => {
+  let index = 0;
+  const length = haystack.length;
+
+  while (index < length) {
+    const element = haystack[index];
+
+    if (element === 'needle') return 'found the needle at position ' + index;
+
+    index++;
+  }
+};
+
+// recursion
+const findNeedleRecurse = (haystack, index = 0) => {
+  const length = haystack.length;
+
+  const element = haystack[index];
+
+  if (element === 'needle') return 'found the needle at position ' + index;
+
+  if (index === length - 1) return 'not found';
+
+  return findNeedleRecurse(haystack, index + 1);
+};
 
 var haystack_1 = [
-  '3',
+  'gfcnfsg',
   '123124234',
   undefined,
   'needle',
   'world',
   'hay',
   2,
-  '3',
+  'k.k.',
   true,
   false
 ];
+
 var haystack_2 = [
   '283497238987234',
   'a dog',
@@ -41,6 +80,7 @@ var haystack_2 = [
   'needle',
   'something somebody lost a while ago'
 ];
+
 var haystack_3 = [
   1,
   2,
@@ -88,11 +128,7 @@ var haystack_3 = [
   54
 ];
 
-Test.assertEquals(findNeedle(haystack_1), 'found the needle at position 3');
-Test.assertEquals(findNeedle(haystack_2), 'found the needle at position 5');
-Test.assertEquals(findNeedle(haystack_3), 'found the needle at position 30');
-
-// top
-// function findNeedle(haystack) {
-//   return "found the needle at position " + haystack.indexOf("needle");
-// }
+findNeedleIndexOf(haystack_3);
+findNeedleFor(haystack_3);
+findNeedleWhile(haystack_3);
+findNeedleRecurse(haystack_3);

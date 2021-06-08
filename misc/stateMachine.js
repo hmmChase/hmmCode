@@ -1,7 +1,7 @@
 // https://kentcdodds.com/blog/implementing-a-simple-state-machine-library-in-javascript
 // https://xstate.js.org/
 
-const createMachine = (stateMachineDefinition) => {
+const createMachine = stateMachineDefinition => {
   // machine object
 
   const machine = {
@@ -23,7 +23,7 @@ const createMachine = (stateMachineDefinition) => {
       machine.value = destinationState;
 
       return machine.value;
-    },
+    }
   };
 
   return machine;
@@ -42,16 +42,16 @@ const machine = createMachine({
       },
       onExit() {
         console.log('false: onExit');
-      },
+      }
     },
     transitions: {
       switch: {
         target: true,
         action() {
           console.log('transition action for "switch" in "false" state');
-        },
-      },
-    },
+        }
+      }
+    }
   },
 
   true: {
@@ -61,17 +61,17 @@ const machine = createMachine({
       },
       onExit() {
         console.log('true: onExit');
-      },
+      }
     },
     transitions: {
       switch: {
         target: false,
         action() {
           console.log('transition action for "switch" in "true" state');
-        },
-      },
-    },
-  },
+        }
+      }
+    }
+  }
 });
 
 // here's how we use the state machine

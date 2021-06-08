@@ -22,10 +22,7 @@ function basicOp(operation, value1, value2) {
   }
 }
 
-basicOp('+', 4, 7);
-console.log('TCL: -------------------------------------------');
-console.log('TCL: basicOp(' + ', 4, 7)', basicOp('+', 4, 7));
-console.log('TCL: -------------------------------------------');
+console.log(basicOp('+', 4, 7));
 
 // console.log('Basic tests\n');
 // Test.assertSimilar(basicOp('+', 4, 7), 11);

@@ -49,6 +49,8 @@ gg = new Graph(a);
 
 const visit = node => console.log(node.data);
 
+// bigO (n)
+
 const dfs = node => {
   if (!node) return;
 
@@ -61,12 +63,12 @@ const dfs = node => {
   });
 };
 
+// bigO (n)
+
 const bfs = root => {
-  const queue = [];
+  const queue = [root];
 
-  queue.push(root);
-
-  root.marked = true;
+  root.visited = true;
 
   while (queue.length > 0) {
     const node = queue.shift();
@@ -74,9 +76,10 @@ const bfs = root => {
     visit(node);
 
     node.children.forEach(child => {
-      if (!child.marked) {
+      if (!child.visited) {
         queue.push(child);
-        child.marked = true;
+
+        child.visited = true;
       }
     });
   }

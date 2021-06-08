@@ -11,4 +11,6 @@ function opposite(number) {
   return -number;
 }
 
-// Test.assertEquals(opposite(1), -1)
+opposite(-1);
+
+// Test.assertEquals(opposite(1), -1) 

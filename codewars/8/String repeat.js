@@ -5,9 +5,11 @@
 
 function repeatStr(n, s) {
   let repeated = '';
-  for (let index = 0; index < n; index++) {
-    repeated = repeated + s;
+
+  for (let nCount = 0; nCount < n; nCount++) {
+    repeated += s;
   }
+
   return repeated;
 }
 

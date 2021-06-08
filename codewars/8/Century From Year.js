@@ -30,7 +30,7 @@ function century(year) {
   }
 }
 
-century(2000);
+console.log(century(2000));
 
 // Test.assertEquals(century(1705), 18, 'Testing for year 1705');
 // Test.assertEquals(century(1900), 19, 'Testing for year 1900');

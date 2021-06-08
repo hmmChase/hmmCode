@@ -4,13 +4,13 @@
 
 // It should look like this:
 
-// Sam Harris => S.H
-
 // Patrick Feeney => P.F
 
-
-function abbrevName(name){
-
-  return name.split(' ').map(i => i[0].toUpperCase()).join('.')
-
+function abbrevName(name) {
+  return name
+    .split(' ')
+    .map(i => i[0].toUpperCase())
+    .join('.');
 }
+
+console.log(abbrevName('Patrick Feeney'));

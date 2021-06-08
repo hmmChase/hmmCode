@@ -81,27 +81,70 @@ const groceryList = {
     desserts: ['ice cream sandwiches']
   }
 };
-console.log('groceryList:', groceryList);
+// subproblem
+// loop through obj values, push elements into container array
 
-function flatten(object) {
-  console.log('object:', object);
+/*
 
-  let objectKeys = Object.keys(object);
 
-  let flat = objectKeys.reduce((acc, item) => {
-    let itemKeys = Object.keys(object[item]);
+subproblem
+- loop through obj, loop through obj, concat arrays into main array
 
-    itemKeys.forEach(type => {
-      object[item][type].forEach(listItem => {
-        acc.push(listItem);
-      });
-    });
 
-    return acc;
-  }, []);
 
-  return flat;
-}
+*/
 
-const result = flatten(groceryList);
-// -----
+// base case
+// loop
+//  -subproblem
+//  -return result
+
+// const flatten = object => {
+//   // get obj keys
+//   let objectKeys = Object.keys(object);
+//   console.log('objectKeys:', objectKeys)
+
+//   // create flat obj
+
+//   let flat = objectKeys.reduce((acc, item) => {
+//     console.log('item:', item)
+//     let itemKeys = Object.keys(object[item]);
+
+//     itemKeys.forEach(type => {
+//       object[item][type].forEach(listItem => {
+//         acc.push(listItem);
+//       });
+//     });
+
+//     return acc;
+//   }, []);
+
+//   return flat;
+// };
+
+// const flatArr = [];
+
+const flatten = object => {
+  // console.log('object:', object);
+  // console.log('typeof: ', typeof object === 'object');
+
+  if (typeof object === 'object')
+    for (const key in object) flatten(object[key]);
+  else flatArr.push(object);
+};
+
+flatten(groceryList);
+console.log('flatArr:', flatArr);
+
+// const ex = [1, 2, [4, [3, 11, [22, 34, 56]]], [33, [9, 23, [11, 23]]]];
+
+// const flatArr = [];
+
+// const flatten = object => {
+//   if (typeof object === 'object') {
+//     for (const key in object) flatten(object[key]);
+//   } else flatArr.push(object);
+// };
+
+// flatten(ex);
+// console.log('flatArr:', flatArr);
